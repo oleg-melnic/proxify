@@ -3,7 +3,6 @@ namespace App\Entity\Course\Item;
 
 use App\Entity\Course\Chapter;
 use Doctrine\ORM\Mapping as ORM;
-use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Table(name="course_item")
@@ -40,7 +39,6 @@ abstract class ItemAbstract
     protected $name;
 
     /**
-     * @Gedmo\Slug(fields={"name"})
      * @var string
      *
      * @ORM\Column(name="alias", type="string", nullable=false, unique=true)

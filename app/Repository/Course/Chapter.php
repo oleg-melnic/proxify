@@ -2,6 +2,7 @@
 namespace App\Repository\Course;
 
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\QueryBuilder;
 
 class Chapter extends EntityRepository
 {

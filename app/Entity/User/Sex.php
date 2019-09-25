@@ -4,12 +4,11 @@ namespace App\Entity\User;
 
 use App\Entity\Exception\InvalidArgument;
 use Doctrine\ORM\Mapping as ORM;
-use S0mWeb\WTL\Filter\From\FromScalar\FactoryInterface;
 
 /**
  * @ORM\Embeddable
  */
-class Sex implements FactoryInterface
+class Sex
 {
     const FEMALE = 'w';
     const MALE = 'm';

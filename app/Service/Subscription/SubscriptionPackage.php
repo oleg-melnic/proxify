@@ -2,15 +2,13 @@
 
 namespace App\Service\Subscription;
 
-use S0mWeb\WTL\Crud\CrudInterface;
-use S0mWeb\WTL\Crud\CrudTrait;
-use S0mWeb\WTL\Crud\NoInheritanceAwareInterface;
-use S0mWeb\WTL\Crud\NoInheritanceAwareTrait;
+use App\Crud\CrudInterface;
+use App\Crud\CrudTrait;
+use App\Service\ServiceAbstract;
 
-class SubscriptionPackage implements CrudInterface, NoInheritanceAwareInterface
+class SubscriptionPackage extends ServiceAbstract implements CrudInterface
 {
     use CrudTrait;
-    use NoInheritanceAwareTrait;
 
     /**
      * @return string
@@ -22,6 +20,7 @@ class SubscriptionPackage implements CrudInterface, NoInheritanceAwareInterface
 
     /**
      * @param array $data
+     *
      * @return object
      */
     public function createEmptyEntity(array $data)
@@ -29,16 +28,8 @@ class SubscriptionPackage implements CrudInterface, NoInheritanceAwareInterface
         return new \App\Entity\Subscription\SubscriptionPackage();
     }
 
-    /**
-     * @return \Doctrine\ORM\EntityRepository
-     */
-    public function getRepository()
-    {
-        return $this->getInheritanceResolver()->getRepository();
-    }
-
     public function getAllPackages()
     {
-        return $this->getRepository()->findAll();
+        return $this->repository->findAll();
     }
 }

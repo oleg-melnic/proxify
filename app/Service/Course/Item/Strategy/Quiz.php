@@ -1,15 +1,12 @@
 <?php
 namespace App\Service\Course\Item\Strategy;
 
-use S0mWeb\WTL\Crud\CrudInterface;
-use S0mWeb\WTL\Crud\CrudTrait;
-use S0mWeb\WTL\Crud\NoInheritanceAwareInterface;
-use S0mWeb\WTL\Crud\NoInheritanceAwareTrait;
+use App\Crud\CrudInterface;
+use App\Crud\CrudTrait;
 
-class Quiz implements CrudInterface, NoInheritanceAwareInterface
+class Quiz implements CrudInterface
 {
     use CrudTrait;
-    use NoInheritanceAwareTrait;
 
     /**
      * @param array $data

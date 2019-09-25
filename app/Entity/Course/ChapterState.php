@@ -4,12 +4,11 @@ namespace App\Entity\Course;
 
 use App\Entity\Exception\InvalidArgument;
 use Doctrine\ORM\Mapping as ORM;
-use S0mWeb\WTL\Filter\From\FromScalar\FactoryInterface;
 
 /**
  * @ORM\Embeddable
  */
-class ChapterState implements FactoryInterface
+class ChapterState
 {
     const ACTIVE = 1;
     const INACTIVE = 0;

@@ -1,9 +1,8 @@
 <?php
+
 namespace App\Entity\Course;
 
 use Doctrine\ORM\Mapping as ORM;
-use Gedmo\Mapping\Annotation as Gedmo;
-use S0mWeb\WTL\Crud\Exception\DeletionFailed;
 
 /**
  * @ORM\Table(name="course_chapter")
@@ -28,7 +27,6 @@ class Chapter
     private $name;
 
     /**
-     * @Gedmo\Slug(fields={"name"})
      * @var string
      *
      * @ORM\Column(name="alias", type="string", nullable=false, unique=true)
@@ -43,7 +41,7 @@ class Chapter
     private $description;
 
     /**
-     * @var State
+     * @var ChapterState
      *
      * @ORM\Embedded(class="\App\Entity\Course\ChapterState")
      */
@@ -58,7 +56,6 @@ class Chapter
     private $course;
 
     /**
-     * @Gedmo\Sortable(groups={"course"})
      * @var integer
      * @ORM\Column(name="position", type="integer", nullable=false)
      */

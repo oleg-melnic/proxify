@@ -3,6 +3,7 @@
 namespace App\Repository\Event;
 
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\QueryBuilder;
 
 class Offline extends EntityRepository
 {
@@ -17,7 +18,10 @@ class Offline extends EntityRepository
 
     /**
      * @param integer $userId
+     *
      * @return \App\Entity\Event\Offline[]
+     *
+     * @throws \Exception
      */
     public function getUpcomingOfflineEvents($userId)
     {
@@ -36,7 +40,10 @@ class Offline extends EntityRepository
 
     /**
      * @param integer $userId
+     *
      * @return \App\Entity\Event\Offline[]
+     *
+     * @throws \Exception
      */
     public function getPastOfflineEvents($userId)
     {

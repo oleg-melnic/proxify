@@ -4,12 +4,11 @@ namespace App\Entity\User\Social;
 
 use App\Entity\Exception\InvalidArgument;
 use Doctrine\ORM\Mapping as ORM;
-use S0mWeb\WTL\Filter\From\FromScalar\FactoryInterface;
 
 /**
  * @ORM\Embeddable
  */
-class State implements FactoryInterface
+class State
 {
     const AUTHENTICATED = 1;
     const UNAUTHENTICATED = 0;

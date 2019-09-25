@@ -3,24 +3,20 @@
 namespace App\Entity\User;
 
 use App\Entity\Event\Offline as OfflineEvent;
-use CirclicalUser\Provider\RoleInterface;
-use CirclicalUser\Provider\RoleProviderInterface;
-use CirclicalUser\Provider\UserInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use S0mWeb\WTL\Entity\File\Image as ImageEntity;
 
 /**
  * @ORM\Table(
  *     name="users"
  * )
- * @ORM\Entity(repositoryClass="\App\Repository\User\User")
+ * @ORM\Entity
  * @ORM\InheritanceType("SINGLE_TABLE")
  * @ORM\DiscriminatorColumn(name="type", type="string")
  * @ORM\DiscriminatorMap({"admin" = "Admin", "student" = "Student", "professor" = "Professor"})
  *
  */
-abstract class UserAbstract implements UserInterface
+abstract class UserAbstract
 {
     /**
      * @var integer
@@ -101,15 +97,6 @@ abstract class UserAbstract implements UserInterface
      */
     protected $passwordResetTokenCreationDate;
 
-     /* @var RoleProviderInterface
-     */
-    private $roleProvider;
-
-    /**
-     * @var RoleInterface[]
-     */
-    private $userRoles;
-
     /**
      * @var Collection|OfflineEvent[]
      *
@@ -121,13 +108,6 @@ abstract class UserAbstract implements UserInterface
      * )
      */
     private $offlineEvents;
-
-    /**
-     * @var ImageEntity
-     * @ORM\ManyToOne(targetEntity="S0mWeb\WTL\Entity\File\Image")
-     * @ORM\JoinColumn(name="avatar", referencedColumnName="id", nullable=true)
-     */
-    private $avatar;
 
     /**
      * Constructor.
@@ -329,54 +309,6 @@ abstract class UserAbstract implements UserInterface
     }
 
     /**
-     * @return \CirclicalUser\Provider\RoleInterface[]
-     */
-    public function getRoles()
-    {
-        if (is_null($this->userRoles)) {
-            $this->initRoles();
-        }
-
-        return $this->userRoles;
-    }
-
-    /**
-     * Get role entities by names
-     *
-     * @return void
-     */
-    private function initRoles() {
-        foreach ($this->getRoleNames() as $name) {
-            $this->userRoles[] = $this->getRoleProvider()->getRoleWithName($name);
-        }
-    }
-
-    /**
-     * @param RoleInterface $role
-     *
-     * @return void
-     */
-    public function addRole(RoleInterface $role)
-    {
-    }
-
-    /**
-     * @return RoleProviderInterface
-     */
-    public function getRoleProvider()
-    {
-        return $this->roleProvider;
-    }
-
-    /**
-     * @param RoleProviderInterface $roleProvider
-     */
-    public function setRoleProvider(RoleProviderInterface $roleProvider)
-    {
-        $this->roleProvider = $roleProvider;
-    }
-
-    /**
      * Get a list of role names
      *
      * @return array
@@ -413,21 +345,5 @@ abstract class UserAbstract implements UserInterface
         if ($this->offlineEvents->contains($offlineEvent)) {
             $this->offlineEvents->removeElement($offlineEvent);
         }
-    }
-
-    /**
-     * @return ImageEntity
-     */
-    public function getAvatar()
-    {
-        return $this->avatar;
-    }
-
-    /**
-     * @param ImageEntity|null $avatar
-     */
-    public function setAvatar($avatar)
-    {
-        $this->avatar = $avatar;
     }
 }

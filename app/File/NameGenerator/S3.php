@@ -1,7 +1,7 @@
 <?php
+
 namespace App\File\NameGenerator;
 
-use S0mWeb\WTL\File\NameGenerator\GeneratorInterface;
 use Symfony\Component\Mime\MimeTypes;
 
 class S3 implements GeneratorInterface

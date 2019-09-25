@@ -1,7 +1,7 @@
 <?php
 namespace App\Entity\Course\Item\Quiz;
 
-use S0mWeb\WTL\Entity\Exception\InvalidArgument;
+use App\Entity\Exception\InvalidArgument;
 
 class Question
 {

@@ -3,12 +3,11 @@ namespace App\Entity\Event;
 
 use App\Entity\Exception\InvalidArgument;
 use Doctrine\ORM\Mapping as ORM;
-use S0mWeb\WTL\Filter\From\FromScalar\FactoryInterface;
 
 /**
  * @ORM\Embeddable
  */
-class State implements FactoryInterface
+class State
 {
     const ACTIVE = 1;
     const INACTIVE = 0;

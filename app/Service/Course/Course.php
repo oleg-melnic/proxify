@@ -1,31 +1,14 @@
 <?php
 namespace App\Service\Course;
 
-use App\Entity\Course\Chapter as ChapterEntity;
+use App\Crud\CrudInterface;
+use App\Crud\CrudTrait;
 use App\Entity\Course\Course as CourseEntity;
-use S0mWeb\WTL\Crud\CrudInterface;
-use S0mWeb\WTL\Crud\CrudTrait;
-use S0mWeb\WTL\Crud\NoInheritanceAwareInterface;
-use S0mWeb\WTL\Crud\NoInheritanceAwareTrait;
-use S0mWeb\WTL\StdLib\EntityManagerAwareInterface;
-use S0mWeb\WTL\StdLib\EntityManagerAwareTrait;
-use S0mWeb\WTL\StdLib\ServiceLocatorAwareInterface;
-use S0mWeb\WTL\StdLib\ServiceLocatorAwareTrait;
-use Zend\InputFilter\InputFilterInterface;
+use App\Service\ServiceAbstract;
 
-/**
- * Service for course
- */
-class Course implements
-    CrudInterface,
-    NoInheritanceAwareInterface,
-    ServiceLocatorAwareInterface,
-    EntityManagerAwareInterface
+class Course extends ServiceAbstract implements CrudInterface
 {
     use CrudTrait;
-    use NoInheritanceAwareTrait;
-    use ServiceLocatorAwareTrait;
-    use EntityManagerAwareTrait;
 
     /**
      * @var \App\Service\Course\Category $categoryService
@@ -33,11 +16,9 @@ class Course implements
     protected $categoryService;
 
     /**
-     * @param array $data
-     *
      * @return CourseEntity
      */
-    public function createEmptyEntity(array $data)
+    public function createEmptyEntity()
     {
         return new CourseEntity();
     }
@@ -53,73 +34,62 @@ class Course implements
     }
 
     /**
-     * @return \Doctrine\ORM\EntityRepository
-     */
-    private function getRepository()
-    {
-        return $this->getInheritanceResolver()->getRepository();
-    }
-
-    /**
      * @param array $params
-     * @return CourseEntity[]|null
      *
+     * @return CourseEntity[]|null
      */
     public function getAllCourses()
     {
-        return $this->getRepository()->findAll();
+        return $this->repository->findAll();
     }
 
     /**
      * @param array $params
-     * @return CourseEntity[]|null
      *
+     * @return CourseEntity[]|null
      */
     public function getAllCoursesByParam($params)
     {
         if (!is_array($params) || !$params) {
-            throw new \App\Service\Exception\InvalidArgument("Invalid argument params, it must be array and must contain at least one element with condition.");
+            throw new \App\Service\Exception\InvalidArgument(
+                "Invalid argument params, it must be array and must contain at least one element with condition."
+            );
         }
 
-        return $this->getRepository()->findAll([
+        return $this->repository->findAll([
             array($params)
         ]);
     }
 
     /**
      * @param array $params
-     * @return CourseEntity|null
      *
+     * @return CourseEntity|null
      */
     public function getOne($params)
     {
         if (!is_array($params) || !$params) {
-            throw new \App\Service\Exception\InvalidArgument("Invalid argument params, it must be array and must contain at least one element with condition.");
+            throw new \App\Service\Exception\InvalidArgument(
+                "Invalid argument params, it must be array and must contain at least one element with condition."
+            );
         }
-        return $this->getRepository()->findOneBy($params);
-    }
 
-    /**
-     * @param $courseId
-     * @return ChapterEntity|null
-     */
-    public function getAllChapters($courseId)
-    {
-        $this->getRepository()->getAllChapters($courseId);
+        return $this->repository->findOneBy($params);
     }
 
     /**
      * @param array $data
+     *
      * @return \App\Entity\Course\Course
      */
     public function firstSave(array $data)
     {
-        $entity = $this->createEmptyEntity($data);
+        $entity = $this->createEmptyEntity();
         $entity->setName($data['name']);
         $entity->setTeacher($data['teacher']);
         $entity->setAuthor($data['author']);
-        $this->getServiceLocator()->get(\Doctrine\ORM\EntityManager::class)->persist($entity);
-        $this->getServiceLocator()->get(\Doctrine\ORM\EntityManager::class)->flush();
+        $this->em->persist($entity);
+        $this->em->flush();
 
         return $entity;
     }

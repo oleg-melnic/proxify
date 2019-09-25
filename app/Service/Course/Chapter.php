@@ -1,19 +1,14 @@
 <?php
 namespace App\Service\Course;
 
+use App\Crud\CrudInterface;
+use App\Crud\CrudTrait;
 use App\Entity\Course\Chapter as CourseChapter;
-use S0mWeb\WTL\Crud\CrudInterface;
-use S0mWeb\WTL\Crud\CrudTrait;
-use S0mWeb\WTL\Crud\NoInheritanceAwareInterface;
-use S0mWeb\WTL\Crud\NoInheritanceAwareTrait;
+use App\Service\ServiceAbstract;
 
-/**
- * Service for course chapter
- */
-class Chapter implements CrudInterface, NoInheritanceAwareInterface
+class Chapter extends ServiceAbstract implements CrudInterface
 {
     use CrudTrait;
-    use NoInheritanceAwareTrait;
 
     /**
      * Получить имя сущности
@@ -26,48 +21,38 @@ class Chapter implements CrudInterface, NoInheritanceAwareInterface
     }
 
     /**
-     * @param array $data
-     *
      * @return CourseChapter
      */
-    public function createEmptyEntity(array $data)
+    public function createEmptyEntity()
     {
         return new CourseChapter();
     }
 
     /**
-     * @return \Doctrine\ORM\EntityRepository
-     */
-    private function getRepository()
-    {
-        return $this->getInheritanceResolver()->getRepository();
-    }
-
-    /**
      * @param array $params
-     * @return CourseChapter|null
      *
+     * @return CourseChapter|null
      */
     public function getOne(array $params)
     {
-        return $this->getRepository()->findOneBy($params);
+        return $this->repository->findOneBy($params);
     }
 
     /**
      * @return CourseChapter[]|null
-     *
      */
     public function getAllCourseChapters()
     {
-        return $this->getRepository()->findAll();
+        return $this->repository->findAll();
     }
 
     /**
      * @param $courseId
+     *
      * @return CourseChapter[]|null
      */
     public function getAllChaptersByCourse($courseId)
     {
-        return $this->getRepository()->getAllChaptersByCourse($courseId);
+        return $this->repository->getAllChaptersByCourse($courseId);
     }
 }

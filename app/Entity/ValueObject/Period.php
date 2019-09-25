@@ -5,12 +5,11 @@ namespace App\Entity\ValueObject;
 use App\Entity\Exception\InvalidArgument;
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
-use S0mWeb\WTL\Filter\From\FromScalar\FactoryInterface;
 
 /**
  * @ORM\Embeddable
  */
-class Period implements FactoryInterface
+class Period
 {
     const PERIOD_ONE_YEAR = 'P1Y';
     const PERIOD_HALF_YEAR = 'P6M';

@@ -5,7 +5,6 @@ use App\Entity\User\UserAbstract;
 use App\Entity\ValueObject\Period;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Table(name="courses")
@@ -37,7 +36,6 @@ class Course
     private $description;
 
     /**
-     * @Gedmo\Slug(fields={"name"})
      * @var string
      *
      * @ORM\Column(name="alias", type="string", nullable=false, unique=true)

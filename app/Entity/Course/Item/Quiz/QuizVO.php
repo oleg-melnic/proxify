@@ -1,16 +1,15 @@
 <?php
 namespace App\Entity\Course\Item\Quiz;
 
+use App\Entity\Exception\InvalidArgument;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use S0mWeb\WTL\Entity\Exception\InvalidArgument;
-use S0mWeb\WTL\Filter\From\FromArray\FactoryInterface;
 
 /**
  * @ORM\Embeddable
  */
-class QuizVO implements FactoryInterface
+class QuizVO
 {
     /**
      * @var Collection

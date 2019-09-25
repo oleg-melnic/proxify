@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Controller;
+namespace App\Http\Controllers;
 
-use App\Controller\Plugins\S3File;
+use App\Http\Controllers\Plugins\S3File;
 use Illuminate\Http\Request;
 
 /**

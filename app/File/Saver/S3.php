@@ -1,8 +1,6 @@
 <?php
 namespace App\File\Saver;
 
-use S0mWeb\WTL\File\Saver\SaverInterface;
-
 class S3 implements SaverInterface
 {
     /**

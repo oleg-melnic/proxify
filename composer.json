@@ -9,10 +9,16 @@
     "license": "MIT",
     "require": {
         "php": "^7.2",
+        "doctrine/common": "^2.11",
+        "doctrine/doctrine-orm-module": "^2.1",
+        "doctrine/migrations": "1.8.x-dev",
         "fideloper/proxy": "^4.0",
+        "gedmo/doctrine-extensions": "^2.4",
+        "laravel-doctrine/migrations": "^1.3",
         "laravel-doctrine/orm": "^1.5",
         "laravel/framework": "^6.0",
-        "laravel/tinker": "^1.0"
+        "laravel/tinker": "^1.0",
+        "zendframework/zend-hydrator": "2.4.x-dev"
     },
     "require-dev": {
         "facade/ignition": "^1.4",

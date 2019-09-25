@@ -2,21 +2,12 @@
 
 namespace App\Service\Subscription;
 
-use CirclicalUser\Service\AuthenticationService;
-use S0mWeb\WTL\Crud\CrudInterface;
-use S0mWeb\WTL\Crud\CrudTrait;
-use S0mWeb\WTL\Crud\NoInheritanceAwareInterface;
-use S0mWeb\WTL\Crud\NoInheritanceAwareTrait;
+use App\Crud\CrudInterface;
+use App\Crud\CrudTrait;
 
-class HistorySubscriptionPackage implements CrudInterface, NoInheritanceAwareInterface
+class HistorySubscriptionPackage implements CrudInterface
 {
     use CrudTrait;
-    use NoInheritanceAwareTrait;
-
-    /**
-     * @var AuthenticationService
-     */
-    protected $authService;
 
     /**
      * @return string

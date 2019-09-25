@@ -1,6 +1,8 @@
 <?php
 namespace App\Service\Course\Item;
 
+use App\Crud\CrudInterface;
+use App\Crud\CrudTrait;
 use App\Entity\Course\Item\ItemAbstract;
 use App\Service\Course\Item\Strategy\Article;
 use App\Service\Course\Item\Strategy\Audio;
@@ -8,15 +10,10 @@ use App\Service\Course\Item\Strategy\Document;
 use App\Service\Course\Item\Strategy\Image;
 use App\Service\Course\Item\Strategy\Quiz;
 use App\Service\Course\Item\Strategy\Video;
-use S0mWeb\WTL\Crud\CrudInterface;
-use S0mWeb\WTL\Crud\CrudTrait;
-use S0mWeb\WTL\Crud\InheritanceAwareInterface;
-use S0mWeb\WTL\Crud\InheritanceAwareTrait;
 
-class Item implements CrudInterface, InheritanceAwareInterface
+class Item implements CrudInterface
 {
     use CrudTrait;
-    use InheritanceAwareTrait;
 
     /**
      * Получить название поля являющееся разделителем inheritance

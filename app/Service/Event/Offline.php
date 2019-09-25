@@ -1,18 +1,14 @@
 <?php
 namespace App\Service\Event;
 
+use App\Crud\CrudInterface;
+use App\Crud\CrudTrait;
 use App\Entity\Event\Offline as OfflineEventEntity;
-use S0mWeb\WTL\Crud\CrudInterface;
-use S0mWeb\WTL\Crud\CrudTrait;
-use S0mWeb\WTL\Crud\NoInheritanceAwareInterface;
-use S0mWeb\WTL\Crud\NoInheritanceAwareTrait;
-use S0mWeb\WTL\StdLib\EntityManagerAwareInterface;
-use S0mWeb\WTL\StdLib\EntityManagerAwareTrait;
+use App\Service\ServiceAbstract;
 
-class Offline implements CrudInterface, NoInheritanceAwareInterface
+class Offline extends ServiceAbstract implements CrudInterface
 {
     use CrudTrait;
-    use NoInheritanceAwareTrait;
 
     /**
      * @param array $data
@@ -35,21 +31,13 @@ class Offline implements CrudInterface, NoInheritanceAwareInterface
     }
 
     /**
-     * @return \Doctrine\ORM\EntityRepository
-     */
-    private function getRepository()
-    {
-        return $this->getInheritanceResolver()->getRepository();
-    }
-
-    /**
      * @param $alias
      * @return OfflineEventEntity|null
      *
      */
     public function findByAlias($alias)
     {
-        return $this->getRepository()->findOneByAlias($alias);
+        return $this->repository->findOneByAlias($alias);
     }
 
     /**
@@ -60,7 +48,7 @@ class Offline implements CrudInterface, NoInheritanceAwareInterface
      */
     public function getUpcomingOfflineEvents($userId)
     {
-        return $this->getRepository()->getUpcomingOfflineEvents($userId);
+        return $this->repository->getUpcomingOfflineEvents($userId);
     }
 
     /**
@@ -71,6 +59,6 @@ class Offline implements CrudInterface, NoInheritanceAwareInterface
      */
     public function getPastOfflineEvents($userId)
     {
-        return $this->getRepository()->getPastOfflineEvents($userId);
+        return $this->repository->getPastOfflineEvents($userId);
     }
 }

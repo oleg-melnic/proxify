@@ -14,3 +14,10 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/courses', 'CourseController@index');
+
+Route::get('/my', 'CourseController@myCourses');
+Route::get('/course', 'CourseController@item');
+
+Route::get('/chapter', 'ChapterController@item');

@@ -3,6 +3,7 @@
 namespace App\Repository\Course;
 
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\QueryBuilder;
 
 class Item extends EntityRepository
 {
@@ -12,11 +13,13 @@ class Item extends EntityRepository
     public function createBaseQuery()
     {
         $queryBuilder = $this->createQueryBuilder('i');
+
         return $queryBuilder;
     }
 
     /**
-     * @param $chapterId
+     * @param int $chapterId
+     *
      * @return \App\Entity\Course\Item\ItemAbstract[]
      */
     public function getAllItemsByChapter($chapterId)
@@ -72,7 +75,8 @@ class Item extends EntityRepository
     /**
      * Get all issues (articles, videos, documents) for chapter
      *
-     * @param $chapterId
+     * @param int $chapterId
+     *
      * @return \App\Entity\Course\Item\ItemAbstract[]
      */
     public function getAllIssuesByChapter($chapterId)
@@ -93,7 +97,8 @@ class Item extends EntityRepository
     /**
      * Get all quizes for chapter
      *
-     * @param $chapterId
+     * @param int $chapterId
+     *
      * @return \App\Entity\Course\Item\ItemAbstract[]
      */
     public function getAllQuizesByChapter($chapterId)

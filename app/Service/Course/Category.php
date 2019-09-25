@@ -1,19 +1,13 @@
 <?php
 namespace App\Service\Course;
 
+use App\Crud\CrudInterface;
+use App\Crud\CrudTrait;
 use App\Entity\Course\Category as CourseCategory;
-use S0mWeb\WTL\Crud\CrudInterface;
-use S0mWeb\WTL\Crud\CrudTrait;
-use S0mWeb\WTL\Crud\NoInheritanceAwareInterface;
-use S0mWeb\WTL\Crud\NoInheritanceAwareTrait;
 
-/**
- * Service for course category
- */
-class Category implements CrudInterface, NoInheritanceAwareInterface
+class Category implements CrudInterface
 {
     use CrudTrait;
-    use NoInheritanceAwareTrait;
 
     /**
      * Получить имя сущности

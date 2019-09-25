@@ -2,8 +2,6 @@
 namespace App\Entity\Course;
 
 use Doctrine\ORM\Mapping as ORM;
-use Gedmo\Mapping\Annotation as Gedmo;
-use S0mWeb\WTL\Crud\Exception\DeletionFailed;
 
 /**
  * @ORM\Table(name="course_category")
@@ -28,7 +26,6 @@ class Category
     private $name;
 
     /**
-     * @Gedmo\Slug(fields={"name"})
      * @var string
      *
      * @ORM\Column(name="alias", type="string", nullable=false, unique=true)
